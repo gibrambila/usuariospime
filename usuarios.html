@@ -198,15 +198,27 @@
 
         <div class="cards-usuarios">
 
-            <div class="card-cliente">
-                <h3>Clientes:</h3>
-                <div class="icon-numero">
-                    <i class="fa-solid fa-user"></i>
-                    <p class="numero" id="clientesCount">0</p>
-                </div>
-            </div>
+           <div class="card-cliente" id="cardCliente" style="cursor: pointer;">
+    <h3>Clientes:</h3>
+    <div class="icon-numero">
+        <i class="fa-solid fa-user"></i>
+        <p class="numero" id="clientesCount">0</p>
+    </div>
+</div>
 
-            <div class="card-vendedor">
+<script>
+    document.getElementById("cardCliente").addEventListener("click", function() {
+        const link = document.createElement("a");
+        link.href = "http://192.168.1.119:5000/pdf/clientes"; // 🔹 rota Flask que gera o PDF dos clientes
+        link.download = "relatorio_clientes.pdf"; // nome do arquivo baixado
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+</script>
+
+
+            <div class="card-vendedor" id="cardVendedor">
                 <h3>Vendedores:</h3>
                 <div class="icon-numero">
                     <i class="fa-solid fa-cart-shopping"></i>
@@ -214,13 +226,22 @@
                 </div>
             </div>
 
-            <div class="card-adm">
-                <h3>ADM's:</h3>
-                <div class="icon-numero">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <p class="numero" id="admsCount">0</p>
-                </div>
-            </div>
+
+
+
+
+
+            
+         <div class="card-adm" id="cardAdm" style="cursor: pointer;">
+    <h3>ADM's:</h3>
+    <div class="icon-numero">
+        <i class="fa-solid fa-user-tie"></i>
+        <p class="numero" id="admsCount">0</p>
+    </div>
+</div>
+
+
+
 
         </div>
 
@@ -250,7 +271,7 @@
     function carregarUsuarios() {
         const requestOptions = { method: "GET", redirect: "follow" };
 
-        fetch("http://192.168.1.113:5000/cadastro", requestOptions)
+        fetch("http://192.168.1.119:5000/cadastro", requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 // array com todos os cadastros
@@ -392,6 +413,60 @@
 
     document.addEventListener('DOMContentLoaded', carregarUsuarios);
 </script>
+
+
+
+<script>
+document.getElementById("cardVendedor").addEventListener("click", function() {
+    const link = document.createElement("a");
+    link.href = "http://192.168.1.119:5000/pdf/vendedores";           // 🔹 rota Flask que gera o PDF
+    link.download = "relatorio_vendedores.pdf"; // nome do arquivo baixado
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+</script>
+
+
+
+
+<script>
+document.getElementById("cardCliente").addEventListener("click", function() {
+    const link = document.createElement("a");
+    link.href = "http://192.168.1.119:5000/pdf/clientes";             // 🔹 rota Flask que gera o PDF dos clientes
+    link.download = "relatorio_clientes.pdf"; // nome do arquivo baixado
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.getElementById("cardAdm").addEventListener("click", function() {
+    const link = document.createElement("a");
+    link.href = "http://192.168.1.119:5000/pdf/adms";              // rota Flask que gera o PDF
+    link.download = "relatorio_adms.pdf"; // nome do arquivo baixado
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+</script>
+
+
+
+
 
     <nav id="sideMenu">
         <div class="closeBtn" id="menuClose">&times;</div>
