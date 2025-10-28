@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Usuários</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/usuarios.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="assets/js/segurancaadm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <style>
+    #sideMenu {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 250px;
+        height: 100%;
+        background-color: #222;
+        color: #f0f0f0;
+        box-shadow: -3px 0 8px rgba(0, 0, 0, 0.6);
+        transition: right 0.3s ease, opacity 0.3s ease;
+        padding: 30px 25px;
+        font-family: 'Poppins', sans-serif;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #sideMenu.active {
+        right: 0;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    #sideMenu .closeBtn {
+        font-size: 28px;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: right;
+        margin-bottom: 40px;
+        color: #f0f0f0;
+        user-select: none;
+        transition: color 0.2s ease;
+    }
+
+    #sideMenu .closeBtn:hover {
+        color: #ff4d4d;
+    }
+
+    #sideMenu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    #sideMenu ul li a {
+        color: #f0f0f0;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        display: block;
+        transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    #sideMenu ul li a:hover {
+        background-color: #444;
+        color: #ff4d4d;
+    }
+
+    .avatarheader img {
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body onload="carregarUsuarios()">
+
+    <header>
+        <img class="logo" src="assets/img/Ariel.png"> <!-- Logo -->
+        <form>
+            <input class="input-header" type="text" placeholder="Buscar na AutoPrime"> <!-- Campo de busca -->
+            <button class="header-btninput" type="submit" style="padding:8px; border:none; cursor:pointer;">
+                <!-- Ícone de lupa -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 
+                    1.415-1.414l-3.85-3.85zm-5.242.656a5 
+                    5 0 1 1 0-10 5 5 0 0 1 0 10z" />
+                </svg>
+            </button>
+        </form>
+
+        <a class="avatarheader" href="#" id="avatarToggle"><img src="assets/img/login 3.png" alt="Avatar"></a> <!-- Avatar clicável -->
+    </header>
+
+    <section class="banner">
+        <img src="assets/img/PONTEIRAS DE 1.png" alt="">
+    </section>
+
+
+
+    <section class="main">
+        <h1>Gerenciar Usuários</h1>
+        <div class="cards-container">
+
+            <div class="usuario">
+
+                <div class="icone">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="info">
+                    <p>usuario@gmail.com</p>
+                    <h2 class="criado-em">Criado em: 22/09/2025</h2>
+                </div>
+
+            </div>
+
+            <div class="informacoes">
+
+                <div class="usuarios">
+
+                    <div class="info-titulo">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Usuários</p>
+                    </div>
+                    <div class="info-segmento-usuarios">
+                        <p class="numero-info">500</p>
+                        <a class="gerenciar" href="usuarios.html">Gerenciar</a>
+                    </div>
+                </div>
+
+                <div class="usuarios">
+
+                    <div class="info-titulo">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Vendas</p>
+                    </div>
+                    <div class="info-segmento-vendas">
+                        <p class="numero-info">400.000</p>
+                        <a class="gerenciar" href="vendas.html">Gerenciar</a>
+                    </div>
+                </div>
+
+                <div class="usuarios">
+
+                    <div class="info-titulo">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <p>Produtos</p>
+                    </div>
+                    <div class="info-segmento-produtos">
+                        <p class="numero-info">50.000</p>
+                        <a class="gerenciar" href="produtos.html">Gerenciar</a>
+                    </div>
+                </div>
+
+                <div class="usuarios">
+
+                    <div class="info-titulo">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <p>Cashback</p>
+                    </div>
+                    <div class="info-segmento-cashback">
+                        <p class="numero-info">R$600,00</p>
+                        <a class="gerenciar" href="cashback.html">Gerenciar</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="botoes">
+
+            <a href="usuarios.html" class="botao-gerenciar"><i class="fa-solid fa-user"></i>Gerenciar Usuários</a>
+
+            <a href="vendas.html" class="botao-gerenciar"><i class="fa-solid fa-cart-shopping"></i>Gerenciar Vendas</a>
+
+            <a href="produtos.html" class="botao-gerenciar"><i class="fa-solid fa-bag-shopping"></i>Gerenciar
+                Produtos</a>
+
+            <a href="cashback.html" class="botao-gerenciar"><i class="fa-solid fa-dollar-sign"></i>Gerenciar
+                Cashback</a>
+
+        </div>
+
+        <div class="cards-usuarios">
+
+            <div class="card-cliente">
+                <h3>Clientes:</h3>
+                <div class="icon-numero">
+                    <i class="fa-solid fa-user"></i>
+                    <p class="numero" id="clientesCount">0</p>
+                </div>
+            </div>
+
+            <div class="card-vendedor">
+                <h3>Vendedores:</h3>
+                <div class="icon-numero">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <p class="numero" id="vendedoresCount">0</p>
+                </div>
+            </div>
+
+            <div class="card-adm">
+                <h3>ADM's:</h3>
+                <div class="icon-numero">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <p class="numero" id="admsCount">0</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="total-usuarios">
+
+            <div class="sofie">
+
+                <p class="todos-usuarios">Todos os usuários:</p>
+
+                <h2 id="total">500</h2>
+
+            </div>
+
+            <a class="botao-add" href="adicionarusuarios.html"><i class="fa-solid fa-plus"></i> Adicionar Usuário</a>
+
+        </div>
+
+        <div class="tabela" id="listarUsuario"></div>
+
+        <div id="pagination" class="pagination"></div>
+
+    </section>
+</body>
+
+<script>
+    function carregarUsuarios() {
+        const requestOptions = { method: "GET", redirect: "follow" };
+
+        fetch("http://192.168.1.113:5000/cadastro", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                // array com todos os cadastros
+                const cadastros = result.cadastro || result || [];
+                // variáveis de paginação
+                const perPage = 11;
+                let currentPage = 1;
+                const totalPages = Math.max(1, Math.ceil(cadastros.length / perPage));
+
+                // contadores por cargo (baseados na lista completa)
+                let clientes = 0, vendedores = 0, adms = 0;
+                cadastros.forEach(item => {
+                    const cargo = (item.cargo || '').toString().toLowerCase().trim();
+                    if (["cliente", "clientes", "client"].includes(cargo)) clientes++;
+                    else if (["vendedor", "vendedores", "vendas", "seller", "sales"].includes(cargo)) vendedores++;
+                    else if (["adm", "admin", "administrador", "administradora", "administrador(a)"].includes(cargo)) adms++;
+                });
+
+                // atualiza cartões (contadores)
+                const fmt = (n) => n.toLocaleString('pt-BR');
+                const clientesEl = document.getElementById("clientesCount");
+                const vendedoresEl = document.getElementById("vendedoresCount");
+                const admsEl = document.getElementById("admsCount");
+                const totalEl = document.getElementById("total");
+                if (clientesEl) clientesEl.textContent = fmt(clientes);
+                if (vendedoresEl) vendedoresEl.textContent = fmt(vendedores);
+                if (admsEl) admsEl.textContent = fmt(adms);
+                if (totalEl) totalEl.textContent = fmt(cadastros.length);
+
+                // referências DOM
+                const container = document.getElementById("listarUsuario");
+                const paginationEl = document.getElementById("pagination");
+
+                // Renderiza uma página específica
+                function renderPage(page) {
+                    // limites
+                    if (page < 1) page = 1;
+                    if (page > totalPages) page = totalPages;
+                    currentPage = page;
+
+                    // fatia do array
+                    const start = (page - 1) * perPage;
+                    const end = start + perPage;
+                    const slice = cadastros.slice(start, end);
+
+                    // gera HTML da página atual
+                    let html = "";
+                    slice.forEach(item => {
+                        const raw = item.ativo;
+                        const isAtivo = (
+                            raw === 1 || raw === '1' ||
+                            raw === true || String(raw).toLowerCase() === 'true' ||
+                            String(raw).toLowerCase() === 'ativo'
+                        );
+                        const statusLabel = isAtivo ? "Ativo" : "Inativo";
+
+                        html += `
+                        <div class="usuario-linha">
+                            <div class="usuario-detalhes">
+                                <div class="icone"><i class="fa-solid fa-user"></i></div>
+                                <div class="separacao-nome-info">
+                                    <div class="nome"><p>${item.email || ''}</p></div>
+                                    <div class="info-usuario">
+                                        <div class="informacoes-mais">
+                                            <p>Nome: <span class="negrito">${item.nome || '-'}</span></p>
+                                            <p>Cargo: <span class="negrito">${item.cargo || '-'}</span></p>
+                                            <p>Status: <span class="status ${isAtivo ? 'ativo' : 'inativo'}">${statusLabel}</span></p>
+                                        </div>
+                                        <a class="botao-editar" href="editar.html?id=${item.id || item.id_cadastro || ''}">Editar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    });
+
+                    container.innerHTML = html;
+                    renderPaginationControls();
+                    // rolar pro topo da lista quando trocar página (opcional)
+                    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                // Renderiza os botões de paginação
+                function renderPaginationControls() {
+                    if (!paginationEl) return;
+                    // quando só 1 página, pode esconder os controles
+                    if (totalPages <= 1) {
+                        paginationEl.innerHTML = "";
+                        return;
+                    }
+
+                    let controls = '';
+
+                    // botão Anterior
+                    controls += `<button class="pg-btn" data-page="${Math.max(1, currentPage - 1)}" ${currentPage === 1 ? 'disabled' : ''}>‹ Anterior</button>`;
+
+                    // mostrar range de páginas; limitar para não poluir (ex.: mostrar 7 botões centrados)
+                    const maxButtons = 7;
+                    let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+                    let endPage = startPage + maxButtons - 1;
+                    if (endPage > totalPages) { endPage = totalPages; startPage = Math.max(1, endPage - maxButtons + 1); }
+
+                    if (startPage > 1) {
+                        controls += `<button class="pg-btn" data-page="1">1</button>`;
+                        if (startPage > 2) controls += `<span class="dots">…</span>`;
+                    }
+
+                    for (let p = startPage; p <= endPage; p++) {
+                        controls += `<button class="pg-btn ${p === currentPage ? 'active' : ''}" data-page="${p}">${p}</button>`;
+                    }
+
+                    if (endPage < totalPages) {
+                        if (endPage < totalPages - 1) controls += `<span class="dots">…</span>`;
+                        controls += `<button class="pg-btn" data-page="${totalPages}">${totalPages}</button>`;
+                    }
+
+                    controls += `<button class="pg-btn" data-page="${Math.min(totalPages, currentPage + 1)}" ${currentPage === totalPages ? 'disabled' : ''}>Próximo ›</button>`;
+
+                    paginationEl.innerHTML = controls;
+
+                    paginationEl.querySelectorAll('.pg-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const p = Number(btn.dataset.page);
+                            if (!isNaN(p)) renderPage(p);
+                        });
+                    });
+                }
+
+                renderPage(1);
+            })
+            .catch((error) => {
+                console.error(error);
+                const container = document.getElementById("listarUsuario");
+                if (container) container.innerHTML = '<p>Erro ao carregar usuários.</p>';
+                const ids = ["clientesCount", "vendedoresCount", "admsCount", "total"];
+                ids.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = "0"; });
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', carregarUsuarios);
+</script>
+
+    <nav id="sideMenu">
+        <div class="closeBtn" id="menuClose">&times;</div>
+        <ul>
+            <li><a href="#">Minha Conta</a></li>
+            <li><a href="#" id="logoutBtn">Logout</a></li>
+        </ul>
+    </nav>
+<!-- Menu lateral JS -->
+<script>
+    const avatarToggle = document.getElementById('avatarToggle');
+    const sideMenu = document.getElementById('sideMenu');
+    const menuClose = document.getElementById('menuClose');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Abre o menu ao clicar no avatar
+    avatarToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        sideMenu.classList.add('active');
+    });
+
+    // Fecha o menu ao clicar no X
+    menuClose.addEventListener('click', function () {
+        sideMenu.classList.remove('active');
+    });
+
+    // Logout
+    logoutBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        localStorage.clear();
+        Swal.fire({
+            icon: 'success',
+            title: 'Logout realizado!',
+            text: 'Você será redirecionado para a página de login.',
+            confirmButtonText: 'Ok'
+        }).then(() => {
+            window.location.href = 'login.html';
+        });
+    });
+</script>
+
+
+</html>
